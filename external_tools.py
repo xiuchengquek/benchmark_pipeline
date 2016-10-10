@@ -12,9 +12,12 @@ fasta_files = []
 rna_classes = {}
 sequences = []
 
+
 with open(classification) as f:
-    for line in classification :
-        rna_class, sequence_name  = line.strip().split()
+    for line in f :
+        fields   = line.strip().split('\t')
+        rna_class = fields[0]
+        sequence_name = fields[1]
         rna_classes[rna_class] = sequence_name
         sequences.append(sequence_name)
 

@@ -1,2 +1,2 @@
-datafile:
-rna_classes_file:
+datafile: ./data/reference_alignments/fasta_file.tsv
+rna_classes_file: ./data/reference_alignments/rna_classes.txt 
