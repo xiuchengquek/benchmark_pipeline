@@ -10,9 +10,12 @@ import sys
 import yaml
 
 
-with open('config.yaml') as f:
-    config = yaml.load(f)
 
+config_file =  os.path.join(os.path.dirname(__file__) , 'config.yaml')
+
+
+with open(config_file) as f:
+    config = yaml.load(f)
 
 
 ventilator_ip = config['ventilator_ip']

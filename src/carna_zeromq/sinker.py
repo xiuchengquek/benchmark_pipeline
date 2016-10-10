@@ -1,9 +1,14 @@
 import zmq
 import sys
 import yaml
+import os
 
 
-with open('config.yaml') as f:
+
+config_file =  os.path.join(os.path.dirname(__file__) , 'config.yaml')
+
+
+with open(config_file) as f:
     config = yaml.load(f)
 
 sinker_reciever_ip =  config['sinker_listen']
