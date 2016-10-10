@@ -21,7 +21,7 @@ def main(receiver_ip):
     context = zmq.Context()
     # Get reciever
     receiver = context.socket(zmq.PULL)
-    receiver.bind(receiver_ip)
+    receiver.bind('tcp://*:5556')
     while True:
         msg = receiver.recv_unicode()
         print(msg)
