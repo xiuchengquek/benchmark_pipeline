@@ -5,14 +5,20 @@
 import zmq
 import sys
 
+import yaml
+
+
+with open('config.yaml') as f:
+    config = yaml.load(f)
 
 
 
-
-worker_reciever_ip = 'tcp:://*:5555'
-sinker_reciever_ip =  'tcp://localhost:5556'
+worker_reciever_ip = config['worker_reciever_ip']
+sinker_reciever_ip =  config['sinker_reciever_ip']
 
 if __name__ == '__main__':
+
+
     context = zmq.Context()
     sender = context.socket(zmq.PUSH)
     sender.bind(worker_reciever_ip)
@@ -21,6 +27,7 @@ if __name__ == '__main__':
     with open(sys.argv[1]) as f:
         for line in f:
             sender.send_unicode(u'%s' % line)
+            sink.send_unicode(u"%s" % line)
 
 
 

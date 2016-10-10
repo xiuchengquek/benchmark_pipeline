@@ -1,0 +1,9 @@
+
+
+worker_reciever_ip: tcp:://*:5555
+sinker_reciever_ip:  tcp://localhost:5556
+ventilator_ip : tcp://192.168.11.203:5555
+worker_to_sinker_ip: tcp://192.168.11.203:5556
+sinker_listen: tcp://*:5556
+
+
