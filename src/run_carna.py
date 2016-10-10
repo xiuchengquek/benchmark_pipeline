@@ -17,3 +17,6 @@ with open(sys.argv[1]) as f:
             sequence_a =fields[1],
             sequence_b = fields[2]
         ))
+
+
+## python run_carna.py pairwise

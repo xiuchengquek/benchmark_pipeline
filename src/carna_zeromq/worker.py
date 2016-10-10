@@ -9,7 +9,7 @@ import sys
 
 import yaml
 
-
+import os
 
 config_file =  os.path.join(os.path.dirname(__file__) , 'config.yaml')
 
