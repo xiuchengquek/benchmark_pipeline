@@ -42,6 +42,29 @@ def print_fasta_to_folder(seq_id_sequence_map):
             f.write(">%s\n%s\n" % (sequence_id, sequence))
 
 
+
+
+def get_pair_wise_alignments(sequences_file):
+    sequences = open(sequences_file).readlines()
+    sequences = [x.strip() for x in sequences ]
+    seq_pairs = {}
+    for x in sequences:
+        sequences_content = split_fasta(x)
+        seq_pairs[x] = list(sequences_content.keys())
+    for key, value in seq_pairs.items():
+        print("%s\t%s\t%s" %(key, value[0], value[1]))
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__' :
 
      sequences_file = sys.argv[1]
