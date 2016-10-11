@@ -3,6 +3,7 @@
 
 import sys
 import re
+import os
 from locrna_clustalw_stockhelm import fill_consensus_sequenece, parse_stockholm
 
 def get_align_lines(file):
@@ -49,13 +50,15 @@ def get_alignments(align_lines):
 
 
 
-    return [sequence_id,complete_sequence_a,  complete_sequence_b, consensus_structure]
+    return [complete_sequence_a,  complete_sequence_b, consensus_structure]
 
 
 
 if __name__ == '__main__':
     align_lines = get_align_lines(sys.argv[1])
-    sequence_pair_id, complete_sequence_a, complete_sequence_b, consensus_structure = get_alignments(align_lines)
+    sequence_pair_id = os.path.basename(sys.argv[1])
+    sequence_pair_id = sequence_pair_id.replace('.txt', '')
+    complete_sequence_a, complete_sequence_b, consensus_structure = get_alignments(align_lines)
     consenses_sequence = fill_consensus_sequenece(complete_sequence_a, complete_sequence_b)
     stockholm_string = parse_stockholm(sequence_pair_id, consenses_sequence, consensus_structure)
     with open(sys.argv[2], 'w') as f:

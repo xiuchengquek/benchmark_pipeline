@@ -61,9 +61,9 @@ class MyTestCase(unittest.TestCase):
 
          ]
 
-        sequence_id,complete_sequence_a, complete_sequence_b, consenses_structure = get_alignments(align_lines)
+        complete_sequence_a, complete_sequence_b, consenses_structure = get_alignments(align_lines)
 
-        self.assertEqual(sequence_id ,'seqA_vs_seqB')
+
         self.assertEqual(complete_sequence_a, "UACAGCGGGGGAGACAUAUAUCACAGCCUGUCUCGCGCCCGACCCUGCUGG")
         self.assertEqual(complete_sequence_b, "UACAGUGGGGGAGACAUAUAUCACAGCCUGUCUCGUGCCCGACCCCGCUGG")
         self.assertEqual(consenses_structure, "..((((((((..((((............))))(((....))))))))))).")
