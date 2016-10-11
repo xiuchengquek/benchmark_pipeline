@@ -3,7 +3,6 @@
 
 import sys
 import re
-
 from locrna_clustalw_stockhelm import fill_consensus_sequenece, parse_stockholm
 
 def get_align_lines(file):
@@ -26,17 +25,19 @@ def get_alignments(align_lines):
     complete_sequence_a = ''
     complete_sequence_b = ''
 
-    for x in align_lines:
+
+    cycle_align_lines = iter(align_lines)
+    for x in cycle_align_lines:
         fields = x.split()
         if len(fields) > 2:
 
             sequence_a_id = fields[2]
             sequence_a = fields[3:]
 
-            structure = next(align_lines)
+            structure = next(cycle_align_lines)
             structure = structure.split()
 
-            sequence_b = next(align_lines)
+            sequence_b = next(cycle_align_lines)
             sequence_b = sequence_b.split()
             sequence_b_id = sequence_b[2]
             sequence_b = sequence_b[3:]
