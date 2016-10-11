@@ -15,6 +15,7 @@ locarna_files = os.listdir(locarna_dir)
 for x in locarna_files:
     clustalfiles = os.path.join(locarna_dir, x)
     stockfiles = os.path.join(stock_dir, x)
+    stockfiles = stockfiles.replace('.clustalw','.stock')
     cmd = "python {script_file} {clustalfiles} {stockfiles}".format(
         script_file = script_file,
         clustalfiles = clustalfiles,
