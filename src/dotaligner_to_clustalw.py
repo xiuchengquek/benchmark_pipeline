@@ -5,6 +5,7 @@ import os
 from generate_reference_clustalw import  generate_clustalW
 
 
+
 if __name__ == '__main__':
 
     fh_in = open(sys.argv[1])
@@ -16,7 +17,7 @@ if __name__ == '__main__':
     seq_a_id = os.path.basename(fields[0]).replace('_dp.pp', '' )
     seq_b_id =  os.path.basename(fields[1]).replace('_dp.pp', '')
 
-    seq_a = fields[6]
-    seq_b =fields[8]
+    seq_a = fields[8]
+    seq_b =fields[6]
 
     generate_clustalW(seq_a_id, seq_a, seq_b_id, seq_b, sys.argv[2])
