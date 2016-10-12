@@ -1,5 +1,5 @@
 
-from split_fasta import split_fasta
+from split_fasta import split_fasta_no_replacement
 import sys
 def generate_clustalW(seq_a_id, seq_a, seq_b_id, seq_b, output):
     """
@@ -23,7 +23,7 @@ def generate_clustalW(seq_a_id, seq_a, seq_b_id, seq_b, output):
 
 if __name__ == '__main__':
 
-    fasta_sequence = split_fasta(sys.argv[1])
+    fasta_sequence = split_fasta_no_replacement(sys.argv[1])
     seq_a_id = sys.argv[2]
     seq_b_id = sys.argv[3]
     generate_clustalW(seq_a_id, fasta_sequence[seq_a_id], seq_b_id, fasta_sequence[seq_b_id], sys.argv[4])

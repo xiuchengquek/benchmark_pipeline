@@ -23,6 +23,22 @@ def split_fasta(fasta_file):
 
     }
 
+
+def split_fasta_no_replacement(fasta_file):
+    fasta = open(fasta_file).readlines()
+    fasta = [x.strip() for x in fasta]
+
+    seq_a_id = fasta[0].replace('>', '')
+    seq_a_fasta = fasta[1]
+    seq_b_id = fasta[2].replace('>', '')
+    seq_b_fasta = fasta[3]
+
+    return {
+        seq_a_id : seq_a_fasta,
+        seq_b_id : seq_b_fasta
+
+    }
+
 def gather_fasta_sequences(sequences_file):
     sequences = open(sequences_file).readlines()
     sequences = [x.strip() for x in sequences ]
