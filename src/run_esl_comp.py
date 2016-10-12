@@ -6,6 +6,7 @@ import os
 reference = sys.argv[1]
 tested = sys.argv[2]
 out = sys.argv[3]
+error = sys.argv[4]
 
 script_file = '/share/ClusterShare/software/contrib/marsmi/infernal-1.0.2/easel/bin/esl-compstruct'
 
@@ -14,6 +15,7 @@ script_file = '/share/ClusterShare/software/contrib/marsmi/infernal-1.0.2/easel/
 reference_files = os.listdir(reference)
 
 
+fh_err = open(error, 'w')
 
 
 for x in reference_files:
@@ -28,7 +30,12 @@ for x in reference_files:
     if os.path.exists(test_file):
         print('{script_file} {ref} {test} > {out_path}'.format(script_file = script_file, ref = ref_file, test = test_file, out_path = out_path))
     else:
-        raise Exception('missing file %s' % test_file)
+         fh_err.write('missing file %s\n' % test_file)
+
+
+
+
+fh_err.close()
 
 
 
