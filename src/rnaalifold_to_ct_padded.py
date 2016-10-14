@@ -34,6 +34,30 @@ def rnaali_dot_bracket(rnaali):
 
     return [f.name, sequence_name]
 
+
+
+
+
+def parse_rnaali(rnaali):
+    sequence = ''
+    structure = ''
+    with open(rnaali) as f:
+        lines = f.readlines()
+        sequence = lines[0].strip()
+        structure = lines[1].strip()
+        structure = structure.split()[0]
+        sequence_name = os.path.basename(sys.argv[1]).replace('rnafold.tsv', '')
+
+
+    return {
+            'sequence_name'  :sequence_name,
+            'sequence'  : sequence,
+            'structure' : structure
+        }
+
+
+
+
 def write_dot_bracket(sequence_name, sequence, structure):
     f = tempfile.NamedTemporaryFile(delete=False)
     f.write(">{seq_name}\n{sequence}\n{structure}".format(
@@ -101,8 +125,8 @@ if __name__ == '__main__' :
 
     script_file = '/home/xiuque/Projects/benchmark_analysis/src/benchmark_pipeline/src/compare_ct.pl'
 
-    reference_dot = rnaali_dot_bracket(reference)
-    test_dot = rnaali_dot_bracket(test)
+    reference_dot = parse_rnaali(reference)
+    test_dot = parse_rnaali(test)
     reference_dot , test_dot = add_padding(reference_dot, test_dot)
 
     reference_dotfile, reference_name = write_dot_bracket(reference_dot['sequence_name'], reference_dot['sequence'], reference_dot['structure'])
