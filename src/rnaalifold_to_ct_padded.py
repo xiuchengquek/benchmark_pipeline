@@ -3,11 +3,62 @@
 
 
 
-from rnaalifold_to_ct import rnaali_dot_bracket, write_dot_bracket,dot_to_ct
+
 
 import os
 import sys
 import subprocess
+import tempfile
+
+
+
+def rnaali_dot_bracket(rnaali):
+    sequence = ''
+    stucture = ''
+    with open(rnaali) as f:
+        lines = f.readlines()
+        sequence = lines[0].strip()
+        structure = lines[1].strip()
+
+    structure = structure.split()[0]
+    sequence_name = os.path.basename(sys.argv[1]).replace('rnafold.tsv', '')
+    f = tempfile.NamedTemporaryFile(delete=False)
+    f.write(">{seq_name}\n{sequence}\n{structure}".format(
+        seq_name = sequence_name,
+        sequence = sequence,
+        structure = structure
+    ))
+
+
+    f.close()
+
+    return [f.name, sequence_name]
+
+def write_dot_bracket(sequence_name, sequence, structure):
+    f = tempfile.NamedTemporaryFile(delete=False)
+    f.write(">{seq_name}\n{sequence}\n{structure}".format(
+        seq_name = sequence_name,
+        sequence = sequence,
+        structure = structure
+    ))
+
+
+    f.close()
+    return [f.name, sequence_name]
+
+
+
+def dot_to_ct(dot_bracket_file):
+    cmd = '/home/xiuque/Projects/DotAlignerMatthew/paul/dot2ct'
+    f = tempfile.NamedTemporaryFile(delete=False)
+    f.close()
+
+    subprocess.call("{dot2ct} {dot} {ct}".format(
+        dot2ct = cmd,
+        dot = dot_bracket_file,
+        ct = f.name
+    ))
+
 
 
 def add_padding(sequence_a, sequence_b):
