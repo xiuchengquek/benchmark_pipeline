@@ -102,7 +102,7 @@ def rnafold_clustalw_process_chain(input_files):
 
 
     with open(clustalw_file) as f:
-        sequenceA_id , sequenceB_id, complete_sequence_a, complete_sequence_b = clustalw_file = parse_clustalw(f)
+        sequenceA_id , sequenceB_id, complete_sequence_a, complete_sequence_b = parse_clustalw(f)
 
     mfe_a = run_rna_fold(complete_sequence_a)
     mfe_b  = run_rna_fold(complete_sequence_b)
