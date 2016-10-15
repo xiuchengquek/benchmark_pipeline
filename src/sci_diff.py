@@ -74,8 +74,6 @@ def parse_clustalw(stream) :
             sequenceA_id, sequenceA_fasta  = sequenceA.split()
             sequenceB = next(stream).strip()
             sequenceB_id, sequenceB_fasta = sequenceB.split()
-
-            next(stream).strip()
             complete_sequence_a += sequenceA_fasta
             complete_sequence_b += sequenceB_fasta
 
