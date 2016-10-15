@@ -21,21 +21,32 @@ def run_rna_fold(sequence):
     """
     sequence = sequence.replace('-', '')
     sequence = str.encode(sequence)
-    cmd = ['RNAfold']
 
-    p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    f = tempfile.NamedTemporaryFile(delete=False)
+    sequenceStr = "%s\n" % sequence
 
-    try :
-        outs, errs = p.communicate(input=sequence,timeout=600) # set time out, should finish in 600secs
+    f.write(sequenceStr)
+    f.close()
 
-    except TimeoutError:
-        p.kill()
-        outs, errs = p.communicate()
+
+
+
+    cmd = 'RNAfold < {fname} > {fname}_results '.format(fname= f.name)
+
+    subprocess.call(cmd, shell=True)
+
+    fh_in = open('{fname}_results')
+    outs = fh_in.read()
+    fh_in.close()
+
+
 
     ## will throw array if fails
     result = str(outs)
     score = MEFSCORERE.search(result).group(1)
     score = float(score)
+
+    os.remove(f.name)
 
 
     return score
@@ -179,14 +190,14 @@ if __name__ == '__main__':
 
     python src/benchmark_pipeline/src/sci_diff.py out/reference/clustalw/ out/reference/rnaalifold/ err/reference_sci.err out/reference/sci.results 4
     """
-    
+
     results = run()
     with open(sys.argv[4], 'w+') as f:
         for x in results:
             line = x[0]
             f.write("%s\n" % line)
 
-   
+
     #with open(sys.argv[1]) as f:
       #  print(parse_clustalw(f))
 
