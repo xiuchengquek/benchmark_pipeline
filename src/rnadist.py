@@ -77,6 +77,7 @@ def run():
             fh_err.write("%s is missing" % x[0])
         elif not os.path.exists(x[1]):
             fh_err.write("%s is missing" % x[1])
+    fh_err.close()
 
 
 
@@ -108,7 +109,7 @@ if __name__ == '__main__':
     """
     sys.argv[1] = reference_folder
     sys.argv[2] = test_folder
-    sys.argv[3] = results
+    sys.argv[4] = results
 
     python src/benchmark_pipeline/src/rnadist.py out/reference/rnaali/f out/test/rnaali/f err/reference_rnadist.err out/test/rnd_dist.results
     """
