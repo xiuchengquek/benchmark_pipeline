@@ -70,9 +70,7 @@ def parse_clustalw(stream) :
     for line in stream:
         line = line.strip()
         if line:
-            print(line)
-            structureA = line.strip()
-            sequenceA = next(stream).strip()
+            sequenceA = line
             sequenceA_id, sequenceA_fasta  = sequenceA.split()
             sequenceB = next(stream).strip()
             sequenceB_id, sequenceB_fasta = sequenceB.split()
@@ -80,7 +78,6 @@ def parse_clustalw(stream) :
             next(stream).strip()
             complete_sequence_a += sequenceA_fasta
             complete_sequence_b += sequenceB_fasta
-            consensus_structure += structureA
 
     return [sequenceA_id, sequenceB_id, complete_sequence_a, complete_sequence_b]
 
