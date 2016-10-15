@@ -69,7 +69,7 @@ def parse_clustalw(stream) :
 
     for line in stream:
         line = line.strip()
-        if line:
+        if line and not '(' not in line:
             sequenceA = line
             sequenceA_id, sequenceA_fasta  = sequenceA.split()
             sequenceB = next(stream).strip()
