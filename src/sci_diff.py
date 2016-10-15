@@ -134,7 +134,7 @@ def run():
     clustalw_files = os.listdir(clustalw_folder)
 
 
-    files_pair = [[os.path.join(clustalw_folder, x), os.path.join(rnaali_folder, x)] for x in clustalw_files]
+    files_pair = [[os.path.join(clustalw_folder, x), os.path.join(rnaali_folder, x.replace('.clustalw', '.rnafold.tsv'))] for x in clustalw_files]
     TASK = []
     for x in files_pair :
 
