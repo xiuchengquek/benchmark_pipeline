@@ -70,7 +70,9 @@ def parse_clustalw(stream) :
     for line in stream:
         line = line.strip()
         if line:
-            if '(' not in line:
+            print(line)
+            if '(' not in line and ')' not in line:
+                print(line)
                 sequenceA = line
                 sequenceA_id, sequenceA_fasta  = sequenceA.split()
                 sequenceB = next(stream).strip()
@@ -177,15 +179,15 @@ if __name__ == '__main__':
 
     python src/benchmark_pipeline/src/sci_diff.py out/reference/clustalw/ out/reference/rnaalifold/ err/reference_sci.err out/reference/sci.results 4
     """
-    """
+    
     results = run()
     with open(sys.argv[4], 'w+') as f:
         for x in results:
             line = x[0]
             f.write("%s\n" % line)
 
-    """
-    with open(sys.argv[1]) as f:
-        print(parse_clustalw(f))
+   
+    #with open(sys.argv[1]) as f:
+      #  print(parse_clustalw(f))
 
 
