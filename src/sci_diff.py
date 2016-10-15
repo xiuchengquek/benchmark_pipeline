@@ -36,14 +36,16 @@ def run_rna_fold(sequence):
     subprocess.call(cmd, shell=True)
 
     fh_in = open('{fname}_results'.format(fname=f.name))
-    outs = fh_in.read()
+    outs = fh_in.readlines()
     fh_in.close()
 
 
 
     ## will throw array if fails
-    result = str(outs)
-    score = MEFSCORERE.search(result).group(1)
+    result = outs[-1]
+    result = result.split()[-1]
+    score = result.replace(')', '').replace('(', '')
+
     score = float(score)
 
     os.remove(f.name)
