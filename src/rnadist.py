@@ -31,7 +31,7 @@ def rnadist(value):
     cmd = 'RNAdistance < {fname} > {fname}.rnad_results'.format(fname = f.name)
     subprocess.call(cmd, shell=True)
 
-    fh_in = open('{fname}.rnad_results')
+    fh_in = open('{fname}.rnad_results'.format(fname=f.name))
     out = fh_in.read()
     fh_in.close()
 
