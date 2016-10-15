@@ -35,7 +35,7 @@ def run_rna_fold(sequence):
 
     subprocess.call(cmd, shell=True)
 
-    fh_in = open('{fname}_results')
+    fh_in = open('{fname}_results'.format(fname=f.name))
     outs = fh_in.read()
     fh_in.close()
 
