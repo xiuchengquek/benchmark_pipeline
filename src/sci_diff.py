@@ -178,16 +178,17 @@ if __name__ == '__main__':
     sys.argv[4] = results
     sys.argv[5] = ncores
 
-
+    python src/benchmark_pipeline/src/sci_diff.py out/reference/clustalw/ out/reference/rnaalifold/ err/reference_sci.err out/reference/sci.results 4
     """
-
+    """
     results = run()
     with open(sys.argv[4], 'w+') as f:
         for x in results:
             line = x[0]
             f.write("%s\n" % line)
 
-
-
+    """
+    with open(sys.argv[1]) as f:
+        print(parse_clustalw(sys.argv[1]))
 
 
