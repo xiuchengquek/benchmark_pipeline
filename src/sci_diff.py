@@ -65,6 +65,7 @@ def parse_clustalw(stream) :
     complete_sequence_a = ''
     complete_sequence_b = ''
     sequence_pair_id = ''
+    next(stream)
 
     for line in stream:
         line = line.strip()
