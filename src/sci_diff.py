@@ -189,6 +189,6 @@ if __name__ == '__main__':
 
     """
     with open(sys.argv[1]) as f:
-        print(parse_clustalw(sys.argv[1]))
+        print(parse_clustalw(f))
 
 
