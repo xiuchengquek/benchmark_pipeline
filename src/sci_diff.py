@@ -171,6 +171,16 @@ def run():
 
 
 if __name__ == '__main__':
+    """
+    sys.argv[1] = clustalw_folder
+    sys.argv[2] = rnaali_folder
+    sys.argv[3] = err
+    sys.argv[4] = results
+    sys.argv[5] = ncores
+
+
+    """
+
     results = run()
     with open(sys.argv[4], 'w+') as f:
         for x in results:
